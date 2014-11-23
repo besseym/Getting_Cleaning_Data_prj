@@ -31,12 +31,14 @@ colnames(subject_test) <- "subject_id"
 y_test <- read.table("test/y_test.txt", header = FALSE)
 colnames(y_test) <- c("label_id")
 
+# join test activity lables wity activity id associated with feature measurement, y_test
 activity_labels_test <- join(y_test, activity_labels)
 
 
 X_test <- read.table("test/X_test.txt", header = FALSE)
 colnames(X_test) <- features_clean
 
+# filter X_test feature measurements to mean and standard deviation variables
 X_test_std_mean <- X_test[,features_std_mean]
 
 # merge test subject, activity and measurements
@@ -52,12 +54,14 @@ colnames(subject_train) <- "subject_id"
 y_train <- read.table("train/y_train.txt", header = FALSE)
 colnames(y_train) <- "label_id"
 
+# join train activity labels wity activity id associated with feature measurement, y_train
 activity_labels_train <- join(y_train, activity_labels)
 
 
 X_train <- read.table("train/X_train.txt", header = FALSE)
 colnames(X_train) <- features_clean
 
+# filter X_test feature measurements to mean and standard deviation variables
 X_train_std_mean <- X_train[,features_std_mean]
 
 # merge train subject, activity and measurements
@@ -71,7 +75,7 @@ tidy_dataset <- rbind(test, train)
 
 
 ##########
-# calculate and write tidy data set average
+# calculate and write average summation tidy data set
 
 tidy_dataset_ave <- ddply(tidy_dataset,.(subject_id, activity_name), colwise(ave, features_std_mean))
 tidy_dataset_ave <- unique(tidy_dataset_ave)

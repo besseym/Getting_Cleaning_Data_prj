@@ -6,7 +6,7 @@ output: html_document
 
 * **Script:** run_analysis.R
 * **Input:** Dataset from the "Human Activity Recognition Using Smartphones" experiment
-* **Output:** Average summation dataset
+* **Output:** Summation dataset
 * **Parameters:** No parameters are required for the script.
 
 
